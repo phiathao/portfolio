@@ -5,7 +5,7 @@ import axios from 'axios';
 function* fetchProject(){
     try{
         const projectList = yield call(axios.get, '/api/projects');
-        yield dispatch({type: 'SET_PROJECTS'})
+        yield dispatch({type: 'SET_PROJECTS', payload: projectList})
     }catch(error){
         console.log(error)
     }

@@ -18,7 +18,7 @@ const sagaMiddleware = createSagaMiddleware();
 const projects = (state = [], action) => {
     switch (action.type) {
         case 'SET_PROJECTS':
-            return action.payload;
+            return action.payload.data;
         default:
             return state;
     }
