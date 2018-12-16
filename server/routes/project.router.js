@@ -45,7 +45,16 @@ const router = express.Router();
 
 //get
 router.get('/', (req,res)=>{
-    res.send('got to get');
+    console.log('got to get');
+    const queryText = 'SELECT * FROM "projects";';
+    pool.query(queryText)
+    .then((result)=>{
+        res.send(result.rows);
+    })
+    .catch((error)=>{
+        console.log(error);
+        res.sendStatus(500);
+    });
 });
 
 //post, add
