@@ -13,7 +13,6 @@ function* fetchProjects(){
 function* fetchTags(){
     try{
         const tagsList = yield call(axios.get, '/api/projects/tags');
-        console.log(tagsList);
         yield dispatch({type: 'SET_TAGS', payload: tagsList});
     }catch(error){
         console.log(error);

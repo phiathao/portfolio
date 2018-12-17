@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 class AdminPage extends Component {
     state = {
@@ -13,18 +14,19 @@ class AdminPage extends Component {
             github: '',
             date_complete: '',
             tag_id: ''
-        },
-        tags: []
+        }
     }
     componentDidMount() {
         this.props.dispatch({ type: 'FETCH_TAGS' });
     }
-    styles = {
+    styles = theme => ({
         container: {
             display: 'flex',
             flexWrap: 'wrap',
         },
         textField: {
+            marginLeft: theme.spacing.unit,
+            marginRight: theme.spacing.unit,
             width: 200,
         },
         dense: {
@@ -33,9 +35,8 @@ class AdminPage extends Component {
         menu: {
             width: 200,
         },
-    };
+    });
     handleChange = (event) => {
-        console.log('inside handleChange', event.target.name)
         this.setState({
             project: {
                 ...this.state.project,
@@ -43,12 +44,34 @@ class AdminPage extends Component {
             }
         })
     }
+    handleTag = (event) => {
+        this.setState({
+            project: {
+                ...this.state.project,
+                tag_id: event.target.value
+            }
+        })
+    }
+    handleSubmit = (event) => {
+        event.preventDefault();
+        this.setState({
+            project: {
+                name: '',
+                description: '',
+                thumbnail: '',
+                website: '',
+                github: '',
+                date_complete: '',
+                tag_id: ''
+            }
+        })
+    }
     render() {
         return (
             <div className="App">
                 <h1>Admin</h1>
-                <form onSubmit={() => this.handleSubmit} styles={this.styles.container}>
-                    {["name", "description", "thumbnail", "website", "github", "date_complete"].map((property, i) => {
+                <form onSubmit={this.handleSubmit} styles={this.styles.container}>
+                    {["name", "description", "thumbnail", "website", "github", "date_complete"].map((property, i) => { //input field
                         return (
                             <TextField
                                 key={i}
@@ -62,25 +85,26 @@ class AdminPage extends Component {
                             />
                         )
                     })}
-                    <TextField
-                        id="standard-select-currency"
+                    <br />
+                    <TextField // selection field
+                        id="tag"
                         select
-                        label="Select"
+                        label="Tag"
                         styles={this.styles.textField}
+                        value={this.state.project.tag_id}
                         onChange={this.handleTag}
-                        SelectProps={{
-                            MenuProps: {
-                                className: classes.menu,
-                            },
-                        }}
-                        {this.state.tags.map(tag => {
+                        margin="normal"
+                    >
+                        {this.props.reduxState.tags.map(tag => { // map to show selection
                             return (
-                                <MenuItem key={tag} value={tag}>
+                                <MenuItem key={tag.id} value={tag.id} styles={this.styles.menu}>
+                                    {tag.name}
                                 </MenuItem>
                             )
                         })}
-                    ></TextField>
-                    
+                    </TextField>
+                    <br />
+                    <Button type="submit" value="Submit">Submit</Button>
                 </form>
             </div>
         )
