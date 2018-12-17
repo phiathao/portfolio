@@ -28,7 +28,7 @@ const projects = (state = [], action) => {
 const tags = (state = [], action) => {
     switch (action.type) {
         case 'SET_TAGS':
-            return action.payload;
+            return action.payload.data;
         default:
             return state;
     }

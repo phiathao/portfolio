@@ -58,6 +58,19 @@ router.get('/', (req,res)=>{
     });
 });
 
+router.get('/tags', (req,res)=>{
+    console.log('in get tags');
+    const queryText = 'SELECT * FROM "tags" ORDER BY "id" DESC;';
+    pool.query(queryText)
+    .then((result)=>{
+        res.send(result.rows);
+    })
+    .catch((error)=>{
+        console.log(error);
+        res.sendStatus(500);
+    })
+})
+
 //post, add
 router.post('/', (req,res)=>{
     res.send('got to post');

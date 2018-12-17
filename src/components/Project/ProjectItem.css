@@ -1,0 +1,15 @@
+.detail li {
+	display: inline-block;
+    padding: 10px 5px 10px 5px;
+}
+
+.name {
+    letter-spacing: 5px;
+    font-size: 150%;
+}
+
+.cardItem {
+    max-width: 85%;
+    margin: auto;
+    padding: 15px;
+}

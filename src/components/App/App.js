@@ -1,29 +1,32 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { blue, teal } from '@material-ui/core/colors';
 import './App.css';
-import ProjectItem from './ProjectItem';
+import 'typeface-roboto';
+import Projects from '../Project/Projects';
+import { HashRouter as Router, Route } from 'react-router-dom';
+import AdminPage from '../AdminPage/AdminPage';
 
-const mapStateToProps = reduxState => ({
-  reduxState,
+//theme
+const theme = createMuiTheme({
+  palette: {
+    primary: blue,
+    secondary: teal,
+  }
 });
 
 class App extends Component {
   // Renders the entire app on the DOM
-  componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_PROJECTS' });
-  }
   render() {
     return (
-      <div className="App">
-        <header>
-          <h2>Phia Thao</h2>
-        </header>
-        {this.props.reduxState.projects.map(project => {
-          return <ProjectItem key={project.id} project={project} />
-        })}
-      </div>
+      <Router>
+        <MuiThemeProvider theme={theme}>
+          <Route path='/' exact component={Projects} />
+          <Route path='/adminControl' component={AdminPage} />
+        </MuiThemeProvider>
+      </Router>
     );
   }
 }
 
-export default connect(mapStateToProps)(App);
+export default App;
