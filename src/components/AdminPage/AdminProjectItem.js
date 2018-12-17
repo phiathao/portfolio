@@ -3,8 +3,13 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
+
 
 class AdminProjectItem extends Component {
+    handleDelete = (id)=>{
+        this.props.dispatch({type: 'DELETE_PROJECT', payload: id})
+    }
     render() {
         return (
             <Card className="CardItem">
@@ -20,10 +25,10 @@ class AdminProjectItem extends Component {
                     </ul>
                 </CardContent>
                 </CardActionArea>
-                <Button className="classButton">Delete</Button>
+                <Button className="classButton" onClick={()=>this.handleDelete(this.props.project.id)}>Delete</Button>
             </Card>
         )
     }
 }
 
-export default AdminProjectItem;
+export default connect()(AdminProjectItem);

@@ -39,6 +39,7 @@ class ProjectItem extends Component {
                 <CardContent>
                     <h4>Description</h4>
                     <p>{this.props.project.description}</p>
+                    <p>{this.props.project.date_completed}</p>
                 </CardContent>
                 </CardActionArea>
             </Card>

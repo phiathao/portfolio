@@ -82,13 +82,22 @@ router.post('/', (req,res)=>{
 })
 
 //delete
-router.delete('/', (req,res)=>{
-    res.send('got to delete');
+router.delete('/delete/:id', (req,res)=>{
+    // console.log(req.params.id);
+    let projectId = req.params.id;
+    const queryText = `DELETE FROM "projects" WHERE "id" = $1;`;
+    pool.query(queryText, [projectId])
+    .then((result)=>{
+        res.sendStatus(200);
+    })
+    .catch((error)=>{
+        res.sendStatus(500);
+    })
 })
 
 //put, update
-router.put('/', (req,res)=>{
-    res.send('got to update');
-})
+// router.put('/', (req,res)=>{
+//     res.send('got to update');
+// })
 
 module.exports = router;
