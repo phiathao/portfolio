@@ -1,6 +1,5 @@
 # My Portfolio App
 
-One Paragraph of project description goes here. Link to the live version of the app if it's hosted on Heroku.
 This app is use to showcase some of the project I created by using all my knowledge that I learn. Each of the projects have use or uses different language and library.
 
 ## Built With
@@ -21,13 +20,12 @@ postgres
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-
 ### Prerequisites
 
 Link to software that is required before you attempt to start the app (e.g. node, mongo).
 
 - [Node.js](https://nodejs.org/en/)
-- List other prerequisites here
+- Postgres for Database
 
 
 ### Installing
@@ -36,40 +34,42 @@ Steps to get the development environment running.
 
 1. Download this project.
 2. `npm install`
-3. `npm start`
+3. `npm run server`
+4. `npm run client`
 
-And so on...
+## Completed Features
+### Project Page
 
-## Screen Shot
+- [X] Client side route that displays projects that are stored in the database
+- [X] Each project should conditionally render a name, description, thumbnail, website, date complete and a tag. Many of the fields are optional, only show properties that aren't null.
+- [X] Include a link to GitHub that opens in a new window
+- [X] Add your name at the top of the page
+- [X] Use Sagas for API requests to your server
 
-Include one or two screen shots of your project here (optional). Remove if unused.
+### Admin Page
 
-## Documentation
+- [X] Client side route that displays a form allowing you to add a new project to your portfolio
+- [X] Include a drop down menu with a list of tags
+- [X] Send data to the server and notify the user of success or failure
+- [X] List projects by name and allow the user to delete them
+- [X] Include a button that navigates to the project page
 
-Link to a read-only version of your scope document or other relevant documentation here (optional). Remove if unused.
-
-### Completed Features
-
-High level list of items completed.
-
-- [x] Feature a
-- [x] Feature b
 
 ### Next Steps
 
-Features that you would like to add at some point in the future.
+Features that I would like to add at some point in the future.
 
-- [ ] Feature c
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+- [ ] Use the GitHub API to get user information to display at the top of the page
+- [X] Improve styling on the page using Material UI
+- [ ] Extend on styling on the page using Material UI
+- [ ] Include a form on the admin page for adding new tags
+- [ ] Implement additional features of the GitHub API
 
 ## Authors
 
-* Name of author(s)
-
+* Phia
 
 ## Acknowledgments
 
 * Hat tip to anyone who's code was used
+* Prime Digital Academy
