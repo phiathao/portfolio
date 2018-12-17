@@ -5,7 +5,7 @@ import axios from 'axios';
 function* fetchProjects(){
     try{
         const projectList = yield call(axios.get, '/api/projects');
-        yield dispatch({type: 'SET_PROJECTS', payload: projectList})
+        yield dispatch({type: 'SET_PROJECTS', payload: projectList});
     }catch(error){
         console.log(error);
     }
@@ -22,7 +22,8 @@ function* fetchTags(){
 function* addProject(action){
     try{
         console.log(action.payload);
-        yield call(axios.post, '/api/projects', action.payload)
+        yield call(axios.post, '/api/projects', action.payload);
+        yield dispatch({type: 'FETCH_PROJECTS'});
     }catch(error){
         console.log(error);
     }

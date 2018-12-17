@@ -72,7 +72,14 @@ router.get('/tags', (req,res)=>{
 //post, add
 router.post('/', (req,res)=>{
     console.log(req.body);
-    res.sendStatus(200);
+    const queryText = 'INSERT INTO "projects" ("name", "description", "thumbnail", "website", "github", "date_completed", "tag_id") VALUES ($1, $2, $3, $4, $5, $6, $7);';
+    pool.query(queryText, [req.body.name, req.body.description, req.body.thumbnail, req.body.website, req.body.github, req.body.date_completed, req.body.tag_id])
+    .then((result)=>{
+        res.sendStatus(200);
+    })
+    .catch((error)=>{
+        res.sendStatus(500);
+    })
 })
 
 //delete

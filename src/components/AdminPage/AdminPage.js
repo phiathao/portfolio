@@ -12,7 +12,7 @@ class AdminPage extends Component {
             thumbnail: '',
             website: '',
             github: '',
-            date_complete: '',
+            date_completed: '',
             tag_id: ''
         }
     }
@@ -62,7 +62,7 @@ class AdminPage extends Component {
                 thumbnail: '',
                 website: '',
                 github: '',
-                date_complete: '',
+                date_completed: '',
                 tag_id: ''
             }
         })
@@ -72,8 +72,8 @@ class AdminPage extends Component {
             <div className="App">
                 <h1>Admin</h1>
                 <form onSubmit={this.handleSubmit} styles={this.styles.container}>
-                    {["name", "description", "thumbnail", "website", "github", "date_complete"].map((property, i) => { //input field
-                        if (property === "date_complete") {
+                    {["name", "description", "thumbnail", "website", "github", "date_completed"].map((property, i) => { //input field
+                        if (property === "date_completed") {
                             return (
                                 <TextField
                                     key={i}
