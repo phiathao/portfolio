@@ -22,7 +22,10 @@ function* fetchTags(){
 function* addProject(action){
     try{
         console.log(action.payload);
-        yield call(axios.post, '/api/projects', action.payload);
+        const response = yield call(axios.post, '/api/projects', action.payload);
+        if (response.data === 'error'){
+            alert('Project did not get submited');
+        }
         yield dispatch({type: 'FETCH_PROJECTS'});
     }catch(error){
         console.log(error);

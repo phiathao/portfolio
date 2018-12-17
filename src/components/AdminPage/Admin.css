@@ -1,0 +1,24 @@
+.cardItem {
+    margin: 15px;
+}
+
+
+.CardItem li {
+  display: 'flex';
+  flex-Wrap: 'wrap';
+  list-style-type: none;
+}
+.textField {
+  width: 200;
+}
+.CardItem {
+    width: 90%;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.classButton {
+    float: right;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}

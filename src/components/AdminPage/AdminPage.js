@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import AdminProjectList from './AdminProjectList';
+import './Admin.css';
+import { Link } from 'react-router-dom';
 
 class AdminPage extends Component {
     state = {
@@ -18,24 +21,8 @@ class AdminPage extends Component {
     }
     componentDidMount() {
         this.props.dispatch({ type: 'FETCH_TAGS' });
+        this.props.dispatch({ type: 'FETCH_PROJECTS' });
     }
-    styles = theme => ({
-        container: {
-            display: 'flex',
-            flexWrap: 'wrap',
-        },
-        textField: {
-            marginLeft: theme.spacing.unit,
-            marginRight: theme.spacing.unit,
-            width: 200,
-        },
-        dense: {
-            marginTop: 19,
-        },
-        menu: {
-            width: 200,
-        },
-    });
     handleChange = (event) => {
         this.setState({
             project: {
@@ -67,11 +54,14 @@ class AdminPage extends Component {
             }
         })
     }
+    handleHistory(){
+    }
     render() {
         return (
             <div className="App">
                 <h1>Admin</h1>
-                <form onSubmit={this.handleSubmit} styles={this.styles.container}>
+                <Link to="/"><Button>View Project</Button></Link>
+                <form onSubmit={this.handleSubmit}>
                     {["name", "description", "thumbnail", "website", "github", "date_completed"].map((property, i) => { //input field
                         if (property === "date_completed") {
                             return (
@@ -79,9 +69,9 @@ class AdminPage extends Component {
                                     key={i}
                                     label={property}
                                     name={property}
+                                    className="textField"
                                     InputLabelProps={{ shrink: true, }}
                                     type="date"
-                                    styles={this.styles.textField}
                                     value={this.state.project[property]}
                                     onChange={this.handleChange}
                                     margin="normal"
@@ -94,7 +84,7 @@ class AdminPage extends Component {
                                     label={property}
                                     name={property}
                                     type="text"
-                                    styles={this.styles.textField}
+                                    className="textField"
                                     value={this.state.project[property]}
                                     onChange={this.handleChange}
                                     margin="normal"
@@ -107,14 +97,14 @@ class AdminPage extends Component {
                         id="tag"
                         select
                         label="Tag"
-                        styles={this.styles.textField}
+                        className="textField"
                         value={this.state.project.tag_id}
                         onChange={this.handleTag}
                         margin="normal"
                     >
                         {this.props.reduxState.tags.map(tag => { // map to show selection
                             return (
-                                <MenuItem key={tag.id} value={tag.id} styles={this.styles.menu}>
+                                <MenuItem key={tag.id} value={tag.id} className="textField">
                                     {tag.name}
                                 </MenuItem>
                             )
@@ -123,6 +113,7 @@ class AdminPage extends Component {
                     <br />
                     <Button type="submit" value="Submit">Submit</Button>
                 </form>
+                <AdminProjectList />
             </div>
         )
     }
