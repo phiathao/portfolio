@@ -54,6 +54,7 @@ class AdminPage extends Component {
     }
     handleSubmit = (event) => {
         event.preventDefault();
+        this.props.dispatch({ type: 'ADD_PROJECT', payload: this.state.project })
         this.setState({
             project: {
                 name: '',
@@ -72,18 +73,34 @@ class AdminPage extends Component {
                 <h1>Admin</h1>
                 <form onSubmit={this.handleSubmit} styles={this.styles.container}>
                     {["name", "description", "thumbnail", "website", "github", "date_complete"].map((property, i) => { //input field
-                        return (
-                            <TextField
-                                key={i}
-                                label={property}
-                                name={property}
-                                type="text"
-                                styles={this.styles.textField}
-                                value={this.state.project[property]}
-                                onChange={this.handleChange}
-                                margin="normal"
-                            />
-                        )
+                        if (property === "date_complete") {
+                            return (
+                                <TextField
+                                    key={i}
+                                    label={property}
+                                    name={property}
+                                    InputLabelProps={{ shrink: true, }}
+                                    type="date"
+                                    styles={this.styles.textField}
+                                    value={this.state.project[property]}
+                                    onChange={this.handleChange}
+                                    margin="normal"
+                                />
+                            )
+                        } else {
+                            return (
+                                <TextField
+                                    key={i}
+                                    label={property}
+                                    name={property}
+                                    type="text"
+                                    styles={this.styles.textField}
+                                    value={this.state.project[property]}
+                                    onChange={this.handleChange}
+                                    margin="normal"
+                                />
+                            )
+                        }
                     })}
                     <br />
                     <TextField // selection field

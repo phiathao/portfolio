@@ -45,7 +45,6 @@ const router = express.Router();
 
 //get
 router.get('/', (req,res)=>{
-    console.log('got to get');
     const queryText = 'SELECT "projects"."id", "projects"."name", "description", "github", "thumbnail", "website", "date_completed", "tags"."name" as "tag" FROM "projects" JOIN "tags" ON "tags"."id" = "projects"."tag_id";';
 
     pool.query(queryText)
@@ -59,7 +58,6 @@ router.get('/', (req,res)=>{
 });
 
 router.get('/tags', (req,res)=>{
-    console.log('in get tags');
     const queryText = 'SELECT * FROM "tags" ORDER BY "id" DESC;';
     pool.query(queryText)
     .then((result)=>{
@@ -73,7 +71,8 @@ router.get('/tags', (req,res)=>{
 
 //post, add
 router.post('/', (req,res)=>{
-    res.send('got to post');
+    console.log(req.body);
+    res.sendStatus(200);
 })
 
 //delete
