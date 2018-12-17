@@ -23,7 +23,7 @@ const tags = (state = [], action) => {
     }
 };
 // Create one store that all components can use
-export const storeInstance = createStore(combineReducers({
+const storeInstance = createStore(combineReducers({
     projects,
     tags,
 }),
@@ -31,3 +31,5 @@ export const storeInstance = createStore(combineReducers({
     applyMiddleware(sagaMiddleware, logger));
 // Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(rootSaga);
+
+export default storeInstance;

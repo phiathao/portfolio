@@ -9,7 +9,7 @@ const router = express.Router();
 
 //get
 router.get('/', (req,res)=>{
-    const queryText = 'SELECT "projects"."id", "projects"."name", "description", "github", "thumbnail", "website", "date_completed", "tags"."name" as "tag" FROM "projects" JOIN "tags" ON "tags"."id" = "projects"."tag_id" ORDER BY "name" DESC;';
+    const queryText = `SELECT "projects"."id", "projects"."name", "description", "github", "thumbnail", "website", to_char("date_completed", 'Mon DD, YYYY') AS "date_completed", "tags"."name" as "tag" FROM "projects" JOIN "tags" ON "tags"."id" = "projects"."tag_id" ORDER BY "name" DESC;`;
     pool.query(queryText)
     .then((result)=>{
         res.send(result.rows);
