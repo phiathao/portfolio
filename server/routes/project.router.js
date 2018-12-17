@@ -1,4 +1,4 @@
-const pool = require("./config");
+const pool = require("../modules/pool");
 
 const express = require('express');
 
